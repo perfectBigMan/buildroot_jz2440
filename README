@@ -3,6 +3,11 @@ toolchain: board/jz2440/toolchain/4.4.3
 
 make jz2440_defconfig
 make uboot
+make linux
 
 
+烧写：
+uboot: 通过dnw
+kernel：进入uboot命令行，配置好ip环境，执行命令：
+tftp 0x30000000 uImage;nand erase.part kernel;nand write.jffs2 0x30000000 0x60000 $filesize
 
