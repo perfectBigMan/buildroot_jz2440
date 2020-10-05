@@ -1,6 +1,5 @@
 buildroot version: buildroot-2018.02.tar.gz
-toolchain
-
+toolchain: board/jz2440/toolchain/4.4.3
 
 make jz2440_defconfig
 make uboot
