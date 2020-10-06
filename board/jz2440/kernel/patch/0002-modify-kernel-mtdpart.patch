@@ -1,0 +1,12 @@
+diff -Nur linux-custombak/arch/arm/mach-s3c24xx/common-smdk.c linux-custom/arch/arm/mach-s3c24xx/common-smdk.c
+--- linux-custombak/arch/arm/mach-s3c24xx/common-smdk.c	2020-10-06 22:03:28.161853950 +0800
++++ linux-custom/arch/arm/mach-s3c24xx/common-smdk.c	2020-10-06 22:04:22.878175148 +0800
+@@ -122,7 +122,7 @@
+ 	[2] = {
+ 		.name	= "kernel",
+ 		.offset = MTDPART_OFS_APPEND,
+-		.size	= SZ_2M,
++		.size	= SZ_4M,
+ 	},
+ 	[3] = {
+ 		.name	= "rootfs",
