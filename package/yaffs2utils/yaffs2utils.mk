@@ -4,18 +4,18 @@
 #
 ################################################################################
 
-YAFFS2UTILS_VERSION = 0.2.9
-YAFFS2UTILS_SOURCE = $(YAFFS2UTILS_VERSION).tar.gz
-YAFFS2UTILS_SITE = https://yaffs2utils.googlecode.com/files
-YAFFS2UTILS_LICENSE = GPL-2.0
+YAFFS2UTILS_VERSION = 
+YAFFS2UTILS_SOURCE = jz2440_yaffs2.tar.gz
+YAFFS2UTILS_SITE_METHOD := local
+YAFFS2UTILS_LICENSE = 
 YAFFS2UTILS_LICENSE_FILES = COPYING
 
 define HOST_YAFFS2UTILS_BUILD_CMDS
-	$(HOST_MAKE_ENV) $(MAKE) -C $(@D)
+	$(HOST_MAKE_ENV) $(MAKE) -C $(@D)/utils
 endef
 
 define HOST_YAFFS2UTILS_INSTALL_CMDS
-	$(HOST_MAKE_ENV) $(MAKE) -C $(@D) INSTALLDIR=$(HOST_DIR)/bin install
+	$(HOST_MAKE_ENV) $(MAKE) -C $(@D)/utils INSTALLDIR=$(HOST_DIR)/bin install
 endef
 
 $(eval $(host-generic-package))

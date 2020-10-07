@@ -1,9 +1,10 @@
 buildroot version: buildroot-2018.02.tar.gz
 toolchain: board/jz2440/toolchain/4.4.3
+image: output/images/
+
 
 make jz2440_defconfig
-make uboot
-make linux
+make 
 
 
 烧写：
@@ -15,3 +16,25 @@ bootargs=console=ttySAC0,115200 root=/dev/mtdblock3 init=/linuxrc
 kernel：进入uboot命令行，配置好ip环境，执行命令：
 tftp 0x30000000 uImage;nand erase.part kernel;nand write.jffs2 0x30000000 0x60000 $filesize
 
+
+yaffs2
+tftp 0x30000000 rootfs.yaffs2;nand erase.part rootfs;nand write.yaffs 0x30000000 0x460000 $filesize
+
+
+buildroot 分析：
+ifupdown-scripts:
+ package/ifupdown-scripts//network/ -> output/target/etc/network/
+ package/ifupdown-scripts//S40network -> output/target/etc/init.d/S40network
+
+initscripts: 拷贝 package/initscripts/init.d/* output/target/etc/init.d/
+skeleton-init-common: 建立target很多目录  rsync system/skeleton/ output/target/
+skeleton-init-sysv: rsync package/skeleton-init-sysv//skeleton/ output/target/
+
+toolchain-external-custom:
+Copying external toolchain libraries to target...
+
+
+package/yaffs2utils/yaffs2utils: yaffs2工具
+
+文件系统：
+/home/zy/work/buildroot/jz2440/buildroot_jz2440/output/host/bin/fakeroot -- /home/zy/work/buildroot/jz2440/buildroot_jz2440/output/build/buildroot-fs/fakeroot.fs
